@@ -6,7 +6,7 @@ import Linkiden from '../assets/icons/linkedin.svg'
 function Footer() {
   return (
     <>
-        <div className="footer py-5">
+        <div className="footer py-5 bg-[#F2F0FE]">
             <div className="container">
                 <div className="fopter_inner flex items-start gap-x-36">
                     <ul>

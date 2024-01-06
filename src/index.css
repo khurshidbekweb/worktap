@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-.conatiners{
-  width: 1240px;
-  margin: 0 auto;
+.busines{
+  background: url(./assets/image/bg-img.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position:120px 0;
 }
