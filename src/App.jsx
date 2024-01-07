@@ -1,12 +1,12 @@
 
-import Home from "./pages/Home"
+import MyPraduct from "./pages/MyPraduct"
 
 
 function App() {
 
   return (
     <>
-      <Home/>
+      <MyPraduct/>
     </>
   )
 }

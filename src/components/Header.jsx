@@ -3,7 +3,7 @@ import Logo from '../assets/icons/logo.svg'
 
 function Header() {
   return (
-    <header className='bg-[#F7F6FF]'>
+    <header>
         <div className="container mx-auto">
             <div className="header_inner flex justify-between p-2 pt-4  items-center w-[100%]">
                 <a href="#">
