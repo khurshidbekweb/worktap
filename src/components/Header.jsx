@@ -1,9 +1,11 @@
 
+import { Outlet } from 'react-router'
 import Logo from '../assets/icons/logo.svg'
+import { NavLink } from 'react-router-dom'
 
 function Header() {
   return (
-    <header>
+    <>
         <div className="container mx-auto">
             <div className="header_inner flex justify-between p-2 pt-4  items-center w-[100%]">
                 <a href="#">
@@ -12,19 +14,19 @@ function Header() {
                 <nav className='w-[45%]'>
                   <ul className="navbar_list flex gapx-x-8 items-center justify-between w-[100%]">
                     <li className="navbar_item">
-                      <a href="#" className='font-medium text-[16px]'>Биржа</a>
+                      <NavLink to="/home" className='font-medium text-[16px]'>Биржа</NavLink>
                     </li>
                     <li className="navbar_item">
-                      <a href="#" className='font-medium text-[16px]'>Ворки</a>
+                      <NavLink to="#" className='font-medium text-[16px]'>Ворки</NavLink>
                     </li>
                     <li className="navbar_item">
-                      <a href="#" className='font-medium text-[16px]'>Конкурсы</a>
+                      <NavLink to="/my-praduct" className='font-medium text-[16px]'>Мои заказы</NavLink>
                     </li>
                     <li className="navbar_item">
-                      <a href="#" className='font-medium text-[16px]'>Создать ворк</a>
+                      <NavLink to="/crate-work" className='font-medium text-[16px]'>Создать ворк</NavLink>
                     </li>
                     <li className="navbar_item">
-                      <a href="#" className='font-medium text-[16px]'>Создать заказ</a>
+                      <NavLink to="/create-order" className='font-medium text-[16px]'>Создать заказ</NavLink>
                     </li>
                   </ul>
                 </nav>
@@ -34,7 +36,8 @@ function Header() {
                 </div>
             </div>
         </div>
-    </header>
+        <Outlet/>
+    </>
   )
 }
 
