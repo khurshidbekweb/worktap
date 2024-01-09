@@ -4,6 +4,7 @@ import Header from "../components/Header"
 import AddDocument from '../assets/icons/addDoc.svg'
 
 function CreateOrder() {
+    
   return (
     <>
         <Header/>
@@ -43,7 +44,6 @@ function CreateOrder() {
                                 </div>
                             </label>
                             <button type="submit" className="p-2 px-10 border rounded-[50px] ml-0 block text-white bg-green-600 text-start my-5">Опубликовать</button>
-
                         </form>
                     </div>
                 </div>

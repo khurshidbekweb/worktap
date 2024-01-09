@@ -3,8 +3,39 @@ import { NavLink } from 'react-router-dom'
 import Logo from '../assets/icons/logo.svg'
 import Google from '../assets/icons/google.png'
 import LoginImg from '../assets/image/mainImg.png'
+import { useNavigate } from 'react-router-dom'
+import { authUtils } from '../utils/auth.utils'
+import { useMutation } from '@tanstack/react-query'
 
 function SignIn() {
+
+
+  const navigate = useNavigate()
+  
+
+  const login = useMutation({
+    mutationFn: authUtils.loginAuth,
+    onSuccess: (data) => {
+      localStorage.setItem("accessToken", data.accessToken)
+      localStorage.setItem("refreshToken", data.refreshToken)
+      navigate("/")
+    },
+    onError: (err) => {
+      console.log(err, "login")
+    }
+  })
+
+  const handleLogin = (e) => {
+    e.preventDefault()    
+    const email = e.target.email.value
+    const password = e.target.password.value
+    login.mutate({
+        email: email,
+        password: password
+      })
+  }
+
+
   return (
     <div className='login w-[100%] h-[100vh] flex items-start overflow-hidden'>
         <div className="login-auth-info w-[50%]">
@@ -12,7 +43,7 @@ function SignIn() {
             <div className="form-wrap w-[480px] ml-auto mt-20 ">
             <p>Добро пожаловать!</p>
             <p className='text-[30px] font-bold'>Войдите в свой аккаунт</p>
-            <form>
+            <form onSubmit={handleLogin}>
                 <label>
                     <span className='block text-start mt-5 text-[22px]'>E-mail</span>
                     <input type="email" name="email" className='input-user' placeholder='E-mail'/>

@@ -5,11 +5,11 @@ export const categoryAuth = {
         const {data} = await castimAxios.get('/category')
         return data
     },
-    postCategory: async ({name, parentId}) => {
-        const formData = new FormData()
-        formData.append("name", name)
-        formData.append("parentId", parentId)
-        const {data} = await castimAxios.post('/category', formData)
+    postCategory: async ({name, parentId}) => {        
+        const {data} = await castimAxios.post('/category', {
+            name: name,
+            parentId: parentId            
+        })
         return data
     },
     deletCategory: async (id) => {

@@ -1,24 +1,23 @@
 import { castimAxios } from "../config/axios.config"
 
 export const authUtils = {
-    registerAuth: async ({email, name, password, phone, roles, surname }) => {
-        const formData = new FormData()
-        formData.append("name", name)
-        formData.append("email", email)
-        formData.append("password", password)
-        formData.append("phone", phone)
-        formData.append("roles", roles)
-        formData.append("surname", surname)
-        formData.append("userAgent", window.navigator.userAgent)
-        const {data} = castimAxios.post('/auth/register', formData)
+    registerAuth: async ({email, name, password, phone, roles, surname }) => {      
+        const {data} = await castimAxios.post('auth/register', {
+            email: email,
+            password: password,
+            userAgent: window.navigator.userAgent,
+            name: name,
+            phone: phone,
+            roles: roles,
+            surname: surname
+        })
         return data
     },
-    loginAuth: async ({email, password}) => {
-        const formData = new FormData()
-        formData.append("email", email)
-        formData.append("password", password)
-        formData.append("userAgent", window.navigator.userAgent)
-        const {data} = await castimAxios.post('auth/login', formData)
+    loginAuth: async ({email, password}) => {        
+        const {data} = await castimAxios.post('auth/login', {
+            email: email,
+            password: password
+        })
         return data
     },
     refreshAuth: async () => {
