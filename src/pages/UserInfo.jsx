@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import Footer from "../components/Footer"
 import Header from "../components/Header"
 import { userUtils } from "../utils/user.utils"
@@ -6,20 +6,26 @@ import { BASE_URL } from "../constants"
 import { NavLink } from "react-router-dom"
 import Edit from '../assets/image/edit.png'
 import { workUtils } from "../utils/work.utils"
-
+import Delet from '../assets/image/trash.png'
+import toastify from "../utils/toastify"
 function UserInfo() {
-
+    const queryCleint = useQueryClient()
     const user = useQuery({
         queryKey: ["users"],
         queryFn: userUtils.getUser
-    })
-
-    
+    })    
     const works = useQuery({
         queryKey: ["works"],
         queryFn: workUtils.getWork
     })
-    console.log("works", works.data);
+
+    const deletWork = useMutation({
+        mutationFn: workUtils.deleteWork,
+        onSuccess: () => {
+            queryCleint.invalidateQueries({queryKey: ["works"]})
+            toastify.successMessage("Muvaffaqiyat o'chirildi")
+        }
+    })
 
   return (
     <>
@@ -54,8 +60,9 @@ function UserInfo() {
                                                 <img className="w-[100%] h-[200px] rounded-t-[30px]" src={`${BASE_URL}${e.image}`} alt="user-img" />
                                                 <h4 className="font-bold text-[18px] mt-2 px-5">{e.name}</h4>
                                             </div>
-                                            <div className="card-body mt-3  overflow-hidden px-5">
+                                            <div className="card-body mt-3 flex justify-between overflow-hidden px-5">
                                                 <p className='text-[20px]  text-[#1DBF73] font-bold'>{e.price} тенге</p>
+                                                <button onClick={() => deletWork.mutate(e.id)}> <img src={Delet} alt="delet" /> </button>
                                             </div>                                            
                                         </div>
                             })}

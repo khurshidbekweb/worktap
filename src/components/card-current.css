@@ -1,0 +1,22 @@
+.current-cart-user:hover .delet-user{
+    display: block;
+}
+
+.current-cart-user:hover .overlay{
+    display: block;
+    top: 0;
+    left: 0;
+    border-radius: 20px;
+    background: rgba(192, 192, 192, 0.288);
+    transition: all 0.5s;
+}
+.delet-user{
+    position: absolute;
+    left: 170px;
+    top: 90px;
+    z-index: 9;
+    transition: all 1s;
+}
+.overlay{
+    
+}

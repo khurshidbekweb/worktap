@@ -91,7 +91,7 @@ function Home() {
                     <h2 className="font-bold text-[24px] mb-12">Актуальные ворки</h2>
                     <div className="current-works_inner flex flex-wrap gap-7">
                         {allUser.data?.length && allUser.data.map(e => {
-                            return <CardCurrent key={e.id} el={e} deletUser={deletUser}/> 
+                            return <CardCurrent key={e.id} el={e}/> 
                         })}                     
                     </div>
                 </div>
