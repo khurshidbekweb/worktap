@@ -5,7 +5,8 @@ import CreateWork from "./pages/CreateWork"
 import MyPraduct from "./pages/MyPraduct"
 import Home from './pages/Home'
 import User from "./pages/User/User"
-
+import SignIn from "./pages/SignIn"
+import SignUp from './pages/SignUp'
 
 function App() {
 
@@ -18,6 +19,8 @@ function App() {
         <Route path="/user" element={<User/>}/>
         <Route path="/create-order" element={<CreateOrder/>}/>
         <Route path="/crate-work" element={<CreateWork/>}/>
+        <Route path="sign-in" element={<SignIn/>}/>
+        <Route path="sign-up" element={<SignUp/>}/>
       </Routes>
     </>
   )

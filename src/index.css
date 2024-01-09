@@ -8,3 +8,16 @@
   background-size: contain;
   background-position:120px 0;
 }
+
+.input-user{
+  width: 350px;
+  margin: 0;
+  border: none;
+  border-bottom:  1px solid rgba(44, 45, 46, 0.25);
+  outline: none;
+  font-family: sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  color: #2C2D2E;
+}

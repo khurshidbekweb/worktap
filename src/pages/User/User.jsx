@@ -35,10 +35,7 @@ const User = () => {
 
               <div>
                 <input className="user-input" name="pssCeria" type="text" placeholder="AA 0000000"/>
-                <p className="user-text ">
-                  Что бы вы подать объявлении вам нужно вводить ваш серии номер
-                  паспорта.
-                </p>
+                
               </div>
 
               <button className="user-btn mt-5">Сохранить</button>
