@@ -8,16 +8,16 @@ function Header() {
     <>
         <div className="container mx-auto">
             <div className="header_inner flex justify-between p-2 pt-4  items-center w-[100%]">
-                <a href="#">
+                <NavLink to="/">
                     <img src={Logo} alt="logo" />
-                </a>
+                </NavLink>
                 <nav className='w-[45%]'>
                   <ul className="navbar_list flex gapx-x-8 items-center justify-between w-[100%]">
                     <li className="navbar_item">
                       <NavLink to="/home" className='font-medium text-[16px]'>Биржа</NavLink>
                     </li>
                     <li className="navbar_item">
-                      <NavLink to="#" className='font-medium text-[16px]'>Ворки</NavLink>
+                      <NavLink to="/user" className='font-medium text-[16px]'>User</NavLink>
                     </li>
                     <li className="navbar_item">
                       <NavLink to="/my-praduct" className='font-medium text-[16px]'>Мои заказы</NavLink>
