@@ -11,12 +11,15 @@ export const orderUtils = {
     },
     postOrder: async ({categoryId, description, name, price, files}) => {
         const formData = new FormData()
-        formData.append("files", files)
+        for(const file of files){
+            formData.append("files", file)
+        }
         formData.append("categoryId", categoryId)
         formData.append("description", description)
         formData.append("name", name)
         formData.append("price", price)
         const {data} = await castimAxios.post('order/add', formData)
+        
         return data
     },
     deletOrder: async (id) => {

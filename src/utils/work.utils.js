@@ -15,7 +15,7 @@ import { castimAxios } from "../config/axios.config"
         formData.append("description", description)
         formData.append("name", name)
         formData.append("price", price)
-        const {data} = await castimAxios.post('work/add', FormData)
+        const {data} = await castimAxios.post('work/add', formData)
         return data
     },
     deleteWork: async (id) => {

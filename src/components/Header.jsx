@@ -17,7 +17,7 @@ function Header() {
                       <NavLink to="/home" className='font-medium text-[16px]'>Биржа</NavLink>
                     </li>
                     <li className="navbar_item">
-                      <NavLink to="/user" className='font-medium text-[16px]'>Пользователь</NavLink>
+                      <NavLink to="/user-info" className='font-medium text-[16px]'>Пользователь</NavLink>
                     </li>
                     <li className="navbar_item">
                       <NavLink to="/my-praduct" className='font-medium text-[16px]'>Мои заказы</NavLink>

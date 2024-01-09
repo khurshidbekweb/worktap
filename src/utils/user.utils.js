@@ -17,7 +17,7 @@ export const userUtils = {
         formData.append("password", password)
         formData.append("name", name)
         const {data} = await castimAxios.post(`user/edit/${id}`, formData)
-
+        console.log(formData);
         return data
     },
     deleteUser: async (id) => {

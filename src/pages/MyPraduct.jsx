@@ -1,9 +1,15 @@
+import { useQuery } from "@tanstack/react-query"
 import Footer from "../components/Footer"
 import Header from "../components/Header"
 import PraductCard from "../components/PraductCard"
+import { orderUtils } from "../utils/order.utilis"
 
 
 function MyPraduct() {
+  const myOrder = useQuery({
+    queryKey: ["myOrders"],
+    queryFn: orderUtils.getAllOrderUtils
+  })
   return (
     <>
         <Header/>
@@ -13,7 +19,7 @@ function MyPraduct() {
                 <div className="container">
                     <div className="mypraducr_inner my-4">
                         <div className="praduct-hearder flex justify-between">
-                          <h3 className="text-[24px] font-medium">Всего 10 заявок</h3>
+                          <h3 className="text-[24px] font-medium">Всего {myOrder.data?.length} заявок</h3>
                           <form>
                             <select name="price" className="p-2 border rounded-xl">
                               <option value="kotatilgan narx">По возрастанию цены</option>
@@ -21,10 +27,11 @@ function MyPraduct() {
                           </form>
                         </div>
                         <div className="my-praduct-body">
-                          <PraductCard/>
-                          <PraductCard/>
-                          <PraductCard/>
-                          <PraductCard/>
+                          {
+                            myOrder.data?.length && myOrder.data.map(e => {
+                              return <PraductCard key={e.id} el={e}/>  
+                            })
+                          }                        
                         </div>
                     </div>
                 </div>

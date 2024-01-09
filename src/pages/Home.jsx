@@ -13,8 +13,21 @@ import Card from '../assets/icons/cart.svg'
 import Img from '../assets/image/bg-img.png'
 import Cash from '../assets/icons/cash.svg'
 import Time from '../assets/icons/time.svg'
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+import { userUtils } from "../utils/user.utils"
 
 function Home() {
+    const queryCleint = useQueryClient()
+    const allUser = useQuery({
+        queryKey: ["all_user"],
+        queryFn: userUtils.getAllUser
+    }) 
+    const deletUser = useMutation({
+        mutationFn: userUtils.deleteUser,
+        onSuccess: () => {
+            queryCleint.invalidateQueries({queryKey: ["all_user"]})
+        }
+    })
   return (
     <>
         <Header/>
@@ -77,8 +90,9 @@ function Home() {
                 <div className="container">
                     <h2 className="font-bold text-[24px] mb-12">Актуальные ворки</h2>
                     <div className="current-works_inner flex flex-wrap gap-7">
-                        <CardCurrent/>
-                        <CardCurrent/><CardCurrent/><CardCurrent/><CardCurrent/>
+                        {allUser.data?.length && allUser.data.map(e => {
+                            return <CardCurrent key={e.id} el={e} deletUser={deletUser}/> 
+                        })}                     
                     </div>
                 </div>
             </section>

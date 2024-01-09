@@ -14,14 +14,14 @@
     gap: 30px;
 }
 
-.user-l {
+/* .user-l {
     position: relative;
     margin: 24px 0 0 0;
     width: 350px;
     height: 350px;
     background: #00ABF2;
     border-radius: 35px;
-}
+} */
 
 .user-l-btn {
     position: absolute;
