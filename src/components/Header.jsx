@@ -1,9 +1,40 @@
 
-import { Outlet } from 'react-router'
+import { Outlet, useNavigate } from 'react-router'
 import Logo from '../assets/icons/logo.svg'
 import { NavLink } from 'react-router-dom'
+import Favarite from '../assets/icons/fav.svg'
+import Natification from '../assets/icons/nat.svg'
+import Message from '../assets/icons/mess.svg'
+import { useQuery } from '@tanstack/react-query'
+import { userUtils } from '../utils/user.utils'
+import { BASE_URL } from '../constants'
+import Person from '../assets/image/person.jpg'
+import { useRef } from 'react'
 
 function Header() {
+  const navigate = useNavigate()
+  const register = useRef(null)
+  const auth = useRef(null)
+  const user = useQuery({
+    queryKey: ["users"],
+    queryFn: userUtils.getUser
+  })
+
+  const accessToken = localStorage.getItem("accessToken")
+  const refreshToken = localStorage.getItem("refreshToken")
+  console.log(register.current?.classList);
+  if(accessToken && refreshToken){
+    register.current?.classList.add("hidden")
+    register.current?.classList.remove("flex")
+    auth.current?.classList.remove("hidden")
+    auth.current?.classList.add('flex')
+  }else{
+    register.current?.classList.remove("hidden")
+    register.current?.classList.add("flex")
+    auth.current?.classList.add("hidden")
+    auth.current?.classList.remove('flex')
+    // navigate('/sign-in')
+  }
   return (
     <>
         <div className="container mx-auto">
@@ -30,9 +61,25 @@ function Header() {
                     </li>
                   </ul>
                 </nav>
-                <div className="header_auth flex gap-x-3 items-center">
+                <div ref={register} className="header_auth flex gap-x-3 items-center">
                   <NavLink to='/sign-up' className='p-2 px-6 bg-[#F2F0FE] font-medium cursor-pointer text-green-600 rounded-[50px]'>Регистрация</NavLink>
                   <NavLink to='/sign-in' className='p-2 px-6 bg-green-600 font-medium cursor-pointer text-white rounded-[50px]'>Войти</NavLink>
+                </div>
+                <div ref={auth} className="auth-login hidden gap-x-10 items-center">
+                  <div className="natification flex gap-x-3">
+                    <button><img src={Favarite} alt="favarite" /></button>
+                    <button><img src={Natification} alt="favarite" /></button>
+                    <button><img src={Message} alt="favarite" /></button>                  
+                  </div>
+                  <div className="profil flex items-center gap-2 relative">
+                    <h3 className='font-bold text-[20px]'>{user?.data?.name}</h3>
+                    <img className='rounded-full' width={40} src={user.data?.image?`${BASE_URL}${user.data?.image}`:Person} alt="user-img" />                    
+                    <select name="role" className='absolute right-[-25px] top-5 bg-[inherit]'>
+                      <option hidden></option>
+                      <option value="coatumer">Я исполнитель</option>
+                      <option value="executor">Я заказчик</option>
+                    </select>
+                  </div>
                 </div>
             </div>
         </div>

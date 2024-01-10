@@ -5,8 +5,10 @@ import AddImg from '../assets/icons/add.svg'
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { workUtils } from "../utils/work.utils"
 import toastify from "../utils/toastify"
+import { useNavigate } from "react-router"
 
 function CreateWork() {
+    const navigate = useNavigate()
     const queryCleint = useQueryClient()
     const addWorks = useMutation({
         mutationFn: workUtils.postWork,
@@ -28,9 +30,9 @@ function CreateWork() {
             name: e.target.name.value,
             price: e.target.price.value
         })
+        e.target.reset()
     }
-    console.log(addWorks.variables);
-
+    
   return (
     <>
         <Header/>
