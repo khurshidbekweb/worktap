@@ -59,17 +59,17 @@ const User = () => {
 
             <div className="user-r">
               <div className="user-r-inner">
-                <input className="user-input" type="tel" name="phone" placeholder="Nomer" />
-                <input className="user-input" type="email" name="email" placeholder="Email" />
+                <input className="user-input"  type="tel" name="phone" placeholder="Nomer" />
+                <input className="user-input" required type="email" name="email" placeholder="Email" />
               </div>
 
               <div className="user-r-inner">
-                <input className="user-input" type="text" name="name" placeholder="Имя"/>
-                <input className="user-input" name="surname" type="text"placeholder="Фамиля"/>
+                <input className="user-input" required type="text" name="name" placeholder="Имя"/>
+                <input className="user-input" required name="surname" type="text"placeholder="Фамиля"/>
               </div>
 
               <div>
-                <input className="user-input" name="pssCeria" type="text" placeholder="AA 0000000"/>                
+                <input className="user-input" name="pssCeria" type="text" placeholder="AA 0000000"/>               
               </div>
 
               <button type="submit" className=" bg-green-600 p-2 px-10 rounded-[50px] text-white mt-5">Сохранить</button>

@@ -4,11 +4,9 @@ import Header from "../components/Header"
 import AddImg from '../assets/icons/add.svg'
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { workUtils } from "../utils/work.utils"
-import toastify from "../utils/toastify"
-import { useNavigate } from "react-router"
+import toastify from "../utils/toastify"    
 
 function CreateWork() {
-    const navigate = useNavigate()
     const queryCleint = useQueryClient()
     const addWorks = useMutation({
         mutationFn: workUtils.postWork,

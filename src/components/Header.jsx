@@ -15,14 +15,13 @@ function Header() {
   const navigate = useNavigate()
   const register = useRef(null)
   const auth = useRef(null)
+  const createWork = useRef(null)
   const user = useQuery({
     queryKey: ["users"],
     queryFn: userUtils.getUser
   })
-
   const accessToken = localStorage.getItem("accessToken")
   const refreshToken = localStorage.getItem("refreshToken")
-  console.log(register.current?.classList);
   if(accessToken && refreshToken){
     register.current?.classList.add("hidden")
     register.current?.classList.remove("flex")
@@ -33,8 +32,19 @@ function Header() {
     register.current?.classList.add("flex")
     auth.current?.classList.add("hidden")
     auth.current?.classList.remove('flex')
-    // navigate('/sign-in')
+    navigate('/')
   }
+
+  const handleRole = (e) => {
+     const value = e.target.value
+     if(value=="customer"){
+      createWork.current.classList.add("hidden")
+     }else{
+      createWork.current.classList.remove("hidden")
+     }
+  }
+
+
   return (
     <>
         <div className="container mx-auto">
@@ -53,7 +63,7 @@ function Header() {
                     <li className="navbar_item">
                       <NavLink to="/my-praduct" className='font-medium text-[16px]'>Мои заказы</NavLink>
                     </li>
-                    <li className="navbar_item">
+                    <li className="navbar_item" ref={createWork}>
                       <NavLink to="/crate-work" className='font-medium text-[16px]'>Создать ворк</NavLink>
                     </li>
                     <li className="navbar_item">
@@ -74,10 +84,11 @@ function Header() {
                   <div className="profil flex items-center gap-2 relative">
                     <h3 className='font-bold text-[20px]'>{user?.data?.name}</h3>
                     <img className='rounded-full' width={40} src={user.data?.image?`${BASE_URL}${user.data?.image}`:Person} alt="user-img" />                    
-                    <select name="role" className='absolute right-[-25px] top-5 bg-[inherit]'>
+                    <select onChange={(handleRole)} name="role" className='absolute right-[-25px] top-5  bg-[inherit]'>
                       <option hidden></option>
-                      <option value="coatumer">Я исполнитель</option>
-                      <option value="executor">Я заказчик</option>
+                      {user.data?.roles?.length && user.data?.roles.map(e => {
+                        return <option key={Math.random()} value={e}>{e=="customer"?"Я исполнитель":"Я заказчик"}</option>
+                      })}
                     </select>
                   </div>
                 </div>
